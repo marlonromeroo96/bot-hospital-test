@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 PAGE_TOKEN   = os.environ.get("PAGE_TOKEN", "")
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "hospital123")
-CLAUDE_KEY   = os.environ.get("CLAUDE_KEY", "")
+CLAUDE_KEY = os.environ.get("CLAUDE_KEY") or os.environ.get("claude_key") or ""
 
 SYSTEM_PROMPT = """Eres el asistente virtual oficial de Hospital Tampico. Responde de manera amigable, clara y concisa. Usa emojis con moderación. NUNCA inventes información; si no sabes algo, indica que llamen al 833 306 1616.
 
@@ -77,7 +77,7 @@ def get_ai_response(user_id, texto):
         # Mantener solo últimos 10 mensajes
         if len(conversaciones[user_id]) > 10:
             conversaciones[user_id] = conversaciones[user_id][-10:]
-        client = anthropic.Anthropic(api_key=CLAUDE_KEY)
+        import os api_key = os.environ.get("CLAUDE_KEY", "") print(f"🔑 API Key presente: {bool(api_key)}") client = anthropic.Anthropic(api_key=api_key)
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=500,

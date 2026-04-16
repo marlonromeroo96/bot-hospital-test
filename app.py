@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 PAGE_TOKEN   = os.environ.get("PAGE_TOKEN", "")
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "hospital123")
-CLAUDE_KEY   = os.environ.get("CLAUDE_KEY", "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")
+CLAUDE_KEY = os.environ.get("CLAUDE_KEY", "")
 
 print(f"🔑 PAGE_TOKEN presente: {bool(PAGE_TOKEN)}")
 print(f"🔑 CLAUDE_KEY presente: {bool(CLAUDE_KEY)}")

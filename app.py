@@ -8,7 +8,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'hospital123secret')
-socketio = SocketIO(app, async_mode='gevent', cors_allowed_origins='*')
+socketio = SocketIO(app, async_mode='threading', cors_allowed_origins='*')
 
 PAGE_TOKEN   = os.environ.get("PAGE_TOKEN", "")
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "hospital123")

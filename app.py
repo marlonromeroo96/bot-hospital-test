@@ -8,7 +8,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'hospital123secret')
-socketio = SocketIO(app, async_mode='gevent', cors_allowed_origins='*')
+socketio = SocketIO(app, async_mode='threading', cors_allowed_origins='*')
 
 PAGE_TOKEN   = os.environ.get("PAGE_TOKEN", "")
 VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "hospital123")
@@ -463,4 +463,4 @@ def send_fb_message(recipient_id, text):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    socketio.run(app, host='0.0.0.0', port=port)
+    socketio.run(app, host='0.0.0.0', port=port, debug=False)
